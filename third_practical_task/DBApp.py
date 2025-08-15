@@ -9,5 +9,5 @@ client = OpenSearch(
     use_ssl=False
 )
 
-make_index_and_fill(client, Path("data"), index_name="docs")
+make_index_and_fill(client, Path('test'), index_name="docs")
 

@@ -35,12 +35,12 @@ def parse_pdfs_in_dir(
         dir_path: str | Path,
         recursive: bool = True,
         **kwargs,
-) -> List[Document] | None:
+) -> list[Document] | None:
     dir_path = Path(dir_path)
 
     pattern = "**/*.pdf" if recursive else "*.pdf"
 
-    out: List[Document] = []
+    out: list[Document] = []
 
     for pdf in dir_path.glob(pattern):
         docs = parse_pdf(pdf, **kwargs)

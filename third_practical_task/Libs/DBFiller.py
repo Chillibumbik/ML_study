@@ -6,9 +6,9 @@ from typing import Iterable
 
 from opensearchpy.helpers import bulk
 
-import Chunker
-import Parser
-import Vectorizer
+from Libs import Chunker
+from Libs import Parser
+from Libs import Vectorizer
 
 def make_embeddings_from_path(files_path: str | Path) -> tuple[list, list]:
     """
