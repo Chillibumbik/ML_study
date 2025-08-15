@@ -1,0 +1,27 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.12.0
+    environment:
+      - cluster.name=opensearch-secure
+      - node.name=node-1
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true # убрать потом надо
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OS_PASSWORD}
+      - "OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g"
+    ulimits:
+      memlock: {soft: -1, hard: -1}
+    ports: ["9200:9200","9600:9600"]
+    restart: unless-stopped
+
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:2.12.0
+    depends_on: [opensearch]
+    environment:
+       # Для безопасности
+#      - OPENSEARCH_HOSTS=["https://opensearch:9200"]
+#      - OPENSEARCH_USERNAME=admin
+#      - OPENSEARCH_PASSWORD=${OS_PASSWORD}
+    - OPENSEARCH_HOSTS=["http://opensearch:9200"]
+    - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+    ports: ["5601:5601"]
+    restart: unless-stopped
