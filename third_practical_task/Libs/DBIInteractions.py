@@ -5,7 +5,6 @@ from opensearchpy import OpenSearch
 from opensearchpy.helpers import bulk
 from langchain.schema import Document
 
-# Предполагаем, что у тебя уже есть эти модули
 from Libs import Chunker, Parser, Vectorizer
 
 from dotenv import load_dotenv
