@@ -1,4 +1,4 @@
-from Libs.DBFiller import make_index_and_fill
+from Libs import DBIInteractions
 
 from pathlib import Path
 from opensearchpy import OpenSearch
@@ -9,5 +9,8 @@ client = OpenSearch(
     use_ssl=False
 )
 
-make_index_and_fill(client, Path('test'), index_name="docs")
+
+interacter = DBIInteractions.DBInteracter(client=client)
+
+
 
